@@ -1,4 +1,6 @@
-import math
+from math import cos
+from math import sin
+from bullet import *
 
 class Player:
     def __init__(self, position, color, size):
