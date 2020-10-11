@@ -8,13 +8,15 @@ class Player:
         self.color = color
         self.size = size
         self.velocity = [0, 0]
-        self.turn_velocity = 3
-        self.angle = 0
-        self.speed = 5
+        self.turn_velocity = .004
+        self.angle = 90
+        self.speed = 0.004
         self.bullets = []
         self.game_size = gs
 
     def move(self):
+        self.velocity[0] *= 0.99
+        self.velocity[1] *= 0.99
         self.position[0] += self.velocity[0]
         self.position[1] += self.velocity[1]
         for i in self.bullets:
@@ -38,4 +40,4 @@ class Player:
         self.angle += direction*self.turn_velocity
     
     def shoot(self):
-        self.bullets.append(Bullet(self.position, [cos(self.angle), sin(self.angle)], 2, 8))
+        self.bullets.append(Bullet([self.position[0], self.position[1]], [cos(self.angle), sin(self.angle)], 5, 0.5))
