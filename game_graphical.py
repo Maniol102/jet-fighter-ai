@@ -40,14 +40,18 @@ def main():
                 game_over = True
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    player1.shoot()
+                    pass
+                    #player1.shoot()
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT]:
-            player1.turn(-1)
+            pass
+            #player1.turn(-1)
         if keys[pygame.K_RIGHT]:
-            player1.turn(1)
+            pass
+            #player1.turn(1)
         if keys[pygame.K_UP]:
-            player1.drive()
+            pass
+            #player1.drive()
 
         screen.fill((230, 230, 230))
         draw_player(player1, screen)
