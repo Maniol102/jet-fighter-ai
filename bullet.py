@@ -1,5 +1,3 @@
-from math import sqrt
-
 class Bullet:
     def __init__(self, position, velocity, size, speed):
         self.position = position
