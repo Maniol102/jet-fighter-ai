@@ -30,7 +30,7 @@ class Brain:
     [7] = opponent velocity
     '''
     def neural_network(self, input_net):
-        layer = [[0 for j in range(max(self.layers))] for i in range(len(self.layers)]
+        layer = [[0 for j in range(max(self.layers))] for i in range(len(self.layers))]
         layer[0] = input_net
                                                                      
         for f in range(len(self.layers) - 1):
