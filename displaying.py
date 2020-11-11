@@ -1,4 +1,4 @@
-from ConfigParser import SafeConfigParser
+from configparser import SafeConfigParser
 import pygame
 pygame.init()
 
@@ -7,7 +7,7 @@ class Screen:
         parser = SafeConfigParser()
         parser.read('game.ini')
 
-        self.game_size = [parser.get('GENERAL', 'game_size_w'), parser.get('GENERAL', 'game_size_h')]
+        self.game_size = [int(parser.get('GENERAL', 'game_size_w')), int(parser.get('GENERAL', 'game_size_h'))]
         self.screen = pygame.display.set_mode(self.game_size)
         self.background_color = (230, 230, 230)
     

@@ -4,7 +4,7 @@ from player import *
 from math import cos
 from math import sin
 from random import randint
-from ConfigParser import SafeConfigParser
+from configparser import SafeConfigParser
 
 
 
@@ -13,11 +13,26 @@ class Game:
         parser = SafeConfigParser()
         parser.read('game.ini')
 
-        self.game_size = [parser.get('GENERAL', 'game_size_w'), parser.get('GENERAL', 'game_size_h')]
+        self.game_size = [int(parser.get('GENERAL', 'game_size_w')), int(parser.get('GENERAL', 'game_size_h'))]
         self.game_over = False
 
-        self.player1 = Player([randint(0, self.game_size[0]), randint(0, self.game_size[1])], (255, 0, 0), 30, self.game_size)
-        self.player2 = Player([randint(0, self.game_size[0]), randint(0, self.game_size[1])], (0, 0, 255), 30, self.game_size)
+        if parser.get("PLAYER 1", "position") == "random":
+            p1pos = [randint(0, self.game_size[0]), randint(0, self.game_size[1])]
+        else:
+            p1pos = parser.get("PLAYER 1", "position")
+            p1pos = p1pos.split(",")
+            for i in p1pos:
+                i = int(i)
+        if parser.get("PLAYER 2", "position") == "random":
+            p2pos = [randint(0, self.game_size[0]), randint(0, self.game_size[1])]
+        else:
+            p2pos = parser.get("PLAYER 2", "position")
+            p2pos = p2pos.split(",")
+            for i in p2pos:
+                i = int(i)
+
+        self.player1 = Player(p1pos, (int(parser.get('PLAYER 1', 'r')), int(parser.get('PLAYER 1', 'g')), int(parser.get('PLAYER 1', 'b'))), int(parser.get('PLAYER 1', 'size')), self.game_size)
+        self.player2 = Player(p2pos, (int(parser.get('PLAYER 2', 'r')), int(parser.get('PLAYER 2', 'g')), int(parser.get('PLAYER 2', 'b'))), int(parser.get('PLAYER 2', 'size')), self.game_size)
 
     def movement(self):
         self.player1.move()
